@@ -1,0 +1,12 @@
+
+.idea/compiler.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/libraries/Maven__org_projectlombok_lombok_1_18_8.xml
+.idea/saveactions_settings.xml
+.idea/uiDesigner.xml
+.idea/vcs.xml
+leetcode.iml
+*.class
+*.kotlin_module
