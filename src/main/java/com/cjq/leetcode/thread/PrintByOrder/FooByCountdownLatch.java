@@ -41,7 +41,7 @@ public class FooByCountdownLatch {
                 System.out.println("third");
             }
         });
-       
+
         fooByCountdownLatch.first(first);
         fooByCountdownLatch.second(second);
         fooByCountdownLatch.third(third);
