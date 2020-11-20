@@ -23,24 +23,9 @@ public class FooByCountdownLatch {
 
     public static void main(String[] args) throws Exception {
         FooByCountdownLatch fooByCountdownLatch = new FooByCountdownLatch();
-        Thread first = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("first");
-            }
-        });
-        Thread second = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("second");
-            }
-        });
-        Thread third = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("third");
-            }
-        });
+        Thread first = new Thread(() -> System.out.println("first"));
+        Thread second = new Thread(() -> System.out.println("second"));
+        Thread third = new Thread(() -> System.out.println("third"));
 
         fooByCountdownLatch.first(first);
         fooByCountdownLatch.second(second);
