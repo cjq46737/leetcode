@@ -6,10 +6,7 @@
  */
 package com.cjq.leetcode.thread.zeroevenodd;
 
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 /**
  * ZeroEvenOdd
@@ -19,13 +16,6 @@ import java.util.concurrent.TimeUnit;
  * @version 3.0.0
  */
 public class ZeroEvenOddBySemaPhore {
-
-    private static final ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 20, 10L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(1000),
-            r -> {
-                Thread thread = new Thread(r);
-                thread.setName("FooBar-" + r.hashCode());
-                return thread;
-            });
 
     private int n;
 
