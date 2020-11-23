@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2020年11月23日 18:14
  * @version 3.0.0
  */
-public class ZeroEvenOdd {
+public class ZeroEvenOddBySemaPhore {
 
     private static final ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 20, 10L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(1000),
             r -> {
@@ -37,12 +37,12 @@ public class ZeroEvenOdd {
     // 奇数
     private Semaphore oddSemaphore = new Semaphore(0);
 
-    public ZeroEvenOdd(int n) {
+    public ZeroEvenOddBySemaPhore(int n) {
         this.n = n;
     }
 
     public static void main(String[] args) {
-        ZeroEvenOdd zeroEvenOdd = new ZeroEvenOdd(6);
+        ZeroEvenOddBySemaPhore zeroEvenOdd = new ZeroEvenOddBySemaPhore(6);
         new Thread(() -> {
             try {
                 zeroEvenOdd.zero(new IntConsumer());
