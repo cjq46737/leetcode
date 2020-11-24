@@ -7,7 +7,6 @@
 package com.cjq.leetcode.thread.zeroevenodd;
 
 import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -20,17 +19,15 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ZeroEvenOddByLock {
     private int n;
 
-    private Lock lock = new ReentrantLock();
+    private ReentrantLock lock = new ReentrantLock();
 
     private Condition zeroCondition = lock.newCondition();
 
     // 偶数
-    private Condition evenCondition = lock.newCondition();
+    private Condition oushuCondition = lock.newCondition();
 
     // 奇数
-    private Condition oddCondition = lock.newCondition();
-
-    private volatile boolean flag = true;
+    private Condition jishuCondition = lock.newCondition();
 
     private volatile int current = 0;
 
@@ -39,7 +36,7 @@ public class ZeroEvenOddByLock {
     }
 
     public static void main(String[] args) {
-        ZeroEvenOddByLock zeroEvenOdd = new ZeroEvenOddByLock(10);
+        ZeroEvenOddByLock zeroEvenOdd = new ZeroEvenOddByLock(1);
         new Thread(() -> {
             try {
                 zeroEvenOdd.zero(new ZeroEvenOddBySemaPhore.IntConsumer());
@@ -69,17 +66,22 @@ public class ZeroEvenOddByLock {
         lock.lock();
 
         try {
-            while (!flag) {
+            while (current != 0) {
                 zeroCondition.await();
             }
-
-            printNumber.accept(0);
-            flag = false;
-            if (++current % 2 == 1) {
-                oddCondition.signal();
-            } else {
-                evenCondition.signal();
+            for (int i = 1; i <= n; i++) {
+                printNumber.accept(0);
+                if (i % 2 == 1) {
+                    current = 1;
+                    jishuCondition.signal();
+                } else {
+                    current = 2;
+                    oushuCondition.signal();
+                }
+                zeroCondition.await();
             }
+            jishuCondition.signal();
+            oushuCondition.signal();
         } finally {
             lock.unlock();
         }
@@ -88,14 +90,21 @@ public class ZeroEvenOddByLock {
 
     public void even(ZeroEvenOddBySemaPhore.IntConsumer printNumber) throws InterruptedException {
         lock.lock();
-        try {
-            while (++current % 2 == 0) {
-                evenCondition.await();
-            }
 
-            printNumber.accept(current);
-            flag = true;
-            zeroCondition.signal();
+        try {
+            if (n <= 1) {
+                return;
+            }
+            while (current != 2) {
+                oushuCondition.await();
+            }
+            for (int i = 2; i <= n; i += 2) {
+
+                printNumber.accept(i);
+                current = 0;
+                zeroCondition.signal();
+                oushuCondition.await();
+            }
         } finally {
             lock.unlock();
         }
@@ -105,13 +114,15 @@ public class ZeroEvenOddByLock {
     public void odd(ZeroEvenOddBySemaPhore.IntConsumer printNumber) throws InterruptedException {
         lock.lock();
         try {
-            while (++current % 2 == 1) {
-                oddCondition.await();
+            while (current != 1) {
+                jishuCondition.await();
             }
-
-            printNumber.accept(current);
-            flag = true;
-            zeroCondition.signal();
+            for (int i = 1; i <= n; i += 2) {
+                printNumber.accept(i);
+                current = 0;
+                zeroCondition.signal();
+                jishuCondition.await();
+            }
         } finally {
             lock.unlock();
         }
