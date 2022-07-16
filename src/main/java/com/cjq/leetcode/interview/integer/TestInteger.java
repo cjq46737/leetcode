@@ -15,6 +15,14 @@ package com.cjq.leetcode.interview.integer;
  */
 public class TestInteger {
 
+    /**
+     * TestInteger
+     * @description -XX:AutoBoxCacheMax=1000，增加参数后，两个计算都是返回true
+     * @param args args
+     * @author chenjunqi
+     * @date 2022/7/16 下午12:18
+     * @version 3.0.0
+     */
     public static void main(String[] args) {
         Integer a = 128, b = 128, c = 127, d = 127;
         System.out.println(a == b);
