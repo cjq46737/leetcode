@@ -8,6 +8,7 @@ package com.cjq.leetcode.interview.equals;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * User
@@ -18,6 +19,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
+@Accessors(chain = true)
 public class TestUserEquals {
 
     private String name;
