@@ -19,7 +19,7 @@ public class TestStringEquals {
         String s1 = "通话";
         String s2 = "重地";
 
-        System.out.println(s1.hashCode());
-        System.out.println(s2.hashCode());
+        System.out.println(s1.hashCode() == s2.hashCode());
+        System.out.println(s2.equals(s1));
     }
 }

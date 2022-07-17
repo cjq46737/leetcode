@@ -30,8 +30,7 @@ public class TestUserEquals {
         TestUserEquals u1 = new TestUserEquals("cjq", "1");
         TestUserEquals u2 = new TestUserEquals("lsy", "2");
         System.out.println(u1.equals(u2));
-        System.out.println(u1.hashCode());
-        System.out.println(u2.hashCode());
+        System.out.println(u1.hashCode() == u2.hashCode());
     }
 
     public boolean equals(Object obj) {
