@@ -18,6 +18,8 @@ public class InitTest {
     public static void main(String[] args) {
         A a = new B();
         a = new B();
+
+        Thread.currentThread().start();
     }
 
 
