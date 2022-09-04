@@ -1,14 +1,14 @@
 /*
  * @projectName leetcode
- * @package com.cjq.leetcode.sync
- * @className com.cjq.leetcode.sync.TestSynchronizde
+ * @package com.cjq.leetcode.interview.sync
+ * @className com.cjq.leetcode.interview.sync.TestSynchronizde
  * @copyright Copyright 2022 Thuisoft, Inc. All rights reserved.
  */
-package com.cjq.leetcode.sync;
+package com.cjq.leetcode.interview.sync;
 
 /**
  * TestSynchronizde
- * @description TODO
+ * @description wait、notify的正确实例
  * @author chenjunqi
  * @date 2022年09月01日 下午9:24
  * @version 3.0.0

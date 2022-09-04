@@ -1,10 +1,10 @@
 /*
  * @projectName leetcode
- * @package com.cjq.leetcode.sync
- * @className com.cjq.leetcode.sync.TestSynchronizdeDemo1
+ * @package com.cjq.leetcode.interview.sync
+ * @className com.cjq.leetcode.interview.sync.TestSynchronizdeDemo1
  * @copyright Copyright 2022 Thuisoft, Inc. All rights reserved.
  */
-package com.cjq.leetcode.sync;
+package com.cjq.leetcode.interview.sync;
 
 /**
  * TestSynchronizdeDemo1
